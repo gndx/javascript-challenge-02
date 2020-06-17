@@ -52,11 +52,14 @@ const waiter2=()=>{
 const waiter3=()=>{
   const pickup_orders2=async()=>{
     try{
-      const order=[(6000, menu.hotdog ,table[1])];
-      const promises=order.map((time, product, table)=>orders(time, product, table));
-      const pickup=await Promise.all(promises);
+      order=[menu.hotdog, menu.pizza, menu.hotdog]
+      const promises=order.map((product)=>orders(6000, product, table[1]));
+      const alertpickup=await Promise.all(promises);
+      console.log(alertpickup);
+      console.log(`Los pedidos para la ${table[1]} ya estan listos para ser retirados`);
+      const finalpromises=order.map((product)=>pickup_orders(6000, product, table[1]));
+      const pickup=await Promise.all(finalpromises);
       console.log(pickup);
-      console.log(`Los pedidos para la ${table[1]} fueron retirados`);
     }catch(error){
       onerror(error)
     }
@@ -66,6 +69,6 @@ const waiter3=()=>{
 
 const onerror=()=>console.log(`No se pudo retirar los pedidos solicitados`);
 
-//waiter();
-//waiter2();
+waiter();
+waiter2();
 waiter3();
