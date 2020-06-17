@@ -67,8 +67,57 @@ const waiter3=()=>{
   pickup_orders2();
 }
 
+const API_URL = 'https://us-central1-escuelajs-api.cloudfunctions.net/orders';
+const opts = { crossDomain: true };
+
+const fetchOrders=()=>{
+    return new Promise((resolve, reject)=>{
+    $
+      .get(API_URL,opts,function(data)
+      {
+          resolve(data);
+          console.log(`hola`)
+      })
+      .fail(()=>reject(id))
+    })
+}
+
+const pickup_orders3=async()=>{
+  try
+  {
+      var persona=await fetchOrders(data)
+      console.log(persona)
+  }catch(id)
+  {
+      onerror(id)
+  }
+}
+pickup_orders3()
+
+
+//const waiter4=()=>{
+  //const pickup_orders3=async()=>{
+    //try{
+      //data= await fetchOrders(API_URL)
+      //console.log(data)
+      //order=[menu.hotdog, menu.pizza, menu.hotdog]
+      //const promises=order.map((product)=>fetchOrders(6000, product, table[1]));
+      //const alertpickup=await Promise.all(promises);
+      //console.log(alertpickup);
+      //console.log(`Los pedidos para la ${table[1]} ya estan listos para ser retirados`);
+      //const finalpromises=order.map((product)=>pickup_orders(6000, product, table[1]));
+      //const pickup=await Promise.all(finalpromises);
+      //console.log(pickup);
+    //}catch(error){
+    //  onerror(error)
+    //}
+  //}
+  //pickup_orders3();
+//}
+
 const onerror=()=>console.log(`No se pudo retirar los pedidos solicitados`);
 
-waiter();
-waiter2();
-waiter3();
+//waiter();
+//waiter2();
+//waiter3();
+//waiter4();
