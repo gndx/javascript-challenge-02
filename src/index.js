@@ -1,8 +1,28 @@
-const orders = (time, product, table) => {
+const fetch = require("node-fetch");
+
+const maximo=8000;
+const minimo=1000;
+const randomTime=(maximo, minimo)=>Math.round(Math.random()*(maximo-minimo)+minimo);
+
+const orders = (time,product,table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
+    let Timing=randomTime(maximo, minimo);
     setTimeout(() => {
-      resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
+      let working=true;
+      if(working) resolve(`=== Pedido servido: ${product}, tiempo de preparación ${Timing}ms para la ${table}`);
+      else reject(`El pedido no pudo ser preparado`);
+    }, time);
+  });
+}
+
+const pickup_orders = (time, product, table) => {
+  return new Promise((resolve, reject) => {
+    let Timing=randomTime(maximo, minimo);
+    setTimeout(() => {
+      let working=true;
+      if(working) resolve(`=== Pedido retirado: ${product}, tiempo de retiro ${Timing}ms para la ${table}`);
+      else reject(`El pedido no pudo ser retirado`);
     }, time);
   });
 }
@@ -21,4 +41,66 @@ const waiter = () => {
     .catch((err) => console.error(err));
 };
 
+const waiter2=()=>{
+  pickup_orders(6000, menu.hotdog, table[0])
+    .then((res) =>{
+      console.log(res)
+      return pickup_orders(6000, menu.pizza,table[2])
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+}
+
+const waiter3=()=>{
+  const pickup_orders2=async()=>{
+    try{
+      order=[menu.hotdog, menu.pizza, menu.hotdog]
+      const promises=order.map((product)=>orders(6000, product, table[1]));
+      const alertpickup=await Promise.all(promises);
+      console.log(alertpickup);
+      console.log(`Los pedidos para la ${table[1]} ya estan listos para ser retirados`);
+      const finalpromises=order.map((product)=>pickup_orders(6000, product, table[1]));
+      const pickup=await Promise.all(finalpromises);
+      console.log(pickup);
+    }catch(error){
+      onerror(error)
+    }
+  }
+  pickup_orders2();
+}
+
+const fetchOrders=async()=>{
+  try{
+  n=0;  
+  let newarrayorder = [];
+  while(n<4){
+    n++;
+    let url = 'https://us-central1-escuelajs-api.cloudfunctions.net/orders';
+    const response = await fetch(url);
+    const commits = await response.json();
+    const answer=commits.data;
+    newarrayorder.push(answer);      
+  }
+  console.log(newarrayorder);
+  const promises=newarrayorder.map((product)=>orders(6000, product, table[3]));
+  const alertpickup=await Promise.all(promises);
+  console.log(alertpickup);
+  console.log(`Los pedidos para la ${table[3]} ya estan listos para ser retirados`);
+  const finalpromises=newarrayorder.map((product)=>pickup_orders(6000, product, table[1]));
+  const pickup=await Promise.all(finalpromises);
+  console.log(pickup);
+  }catch(error){
+      onerror();
+    }
+}
+
+waiter4=()=>{
+  fetchOrders();
+}
+
+const onerror=()=>console.log(`No se pudo retirar los pedidos solicitados`);
+
 waiter();
+waiter2();
+waiter3();
+waiter4();
