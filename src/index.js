@@ -1,11 +1,23 @@
+const min = 1000;
+const max = 8000;
+//creacion de function  randomTime pedida
+const randomTime = (max, min) => Math.round(Math.random() * (max - min) + min);
+console.log(randomTime)
+
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
-    }, time);
-  });
+      if(randomTime(max,min) <= time){
+        resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
+        
+      } else {
+        reject(`Orden fuera del tiempo establecido`);
+              }
+    },time);    
+  }); 
 }
+
 
 const menu = {
   hamburger: 'Combo Hamburguesa',
@@ -20,5 +32,6 @@ const waiter = () => {
     .then((res) => console.log(res))
     .catch((err) => console.error(err));
 };
+
 
 waiter();
