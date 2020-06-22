@@ -12,8 +12,8 @@ const orders = (time, product, table) => {
         resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
         
       } else {
-        reject(`Orden fuera del tiempo establecido`);
-              }
+        reject(`=== Orden fuera del tiempo establecido`);
+        }
     },time);    
   }); 
 }
@@ -32,6 +32,16 @@ const waiter = () => {
     .then((res) => console.log(res))
     .catch((err) => console.error(err));
 };
+const waiter2 = () => {
+  orders(6000, menu.hotdog, table[0])
+    .then((res) => {
+      console.log(res)
+      return orders(6000, menu.pizza, table[2])
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+};
 
 
 waiter();
+waiter2()
