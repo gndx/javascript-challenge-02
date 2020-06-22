@@ -1,6 +1,6 @@
 const min = 1000;
 const max = 8000;
-//creacion de function  randomTime pedida
+
 const randomTime = (max, min) => Math.round(Math.random() * (max - min) + min);
 console.log(randomTime)
 
@@ -42,6 +42,23 @@ const waiter2 = () => {
     .catch((err) => console.error(err));
 };
 
+const onerror = () => {
+  console.log(`=== Orden sin terminar`);
+}
+
+async function waiter3(){
+  const order = [menu.hotdog, menu.pizza, menu.hotdog];
+  const promesas = order.map(pedido => orders(7000, pedido, table[1]));
+  try {
+    const ordersTable = await Promise.all(promesas);
+    console.log(ordersTable);
+    console.log(`Su Orden esta lista ${table[1]} por favor acerquese a retirarla`);
+  } catch (error) {
+    onerror(error);
+  }
+} 
+
 
 waiter();
 waiter2()
+waiter3()
