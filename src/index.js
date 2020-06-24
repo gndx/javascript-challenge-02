@@ -34,17 +34,15 @@ const waiter = () => {
 };
 const waiter2 = () => {
   orders(6000, menu.hotdog, table[0])
-    .then((res) => {
-      console.log(res)
-      return orders(6000, menu.pizza, table[2])
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+  orders(6000, menu.pizza, table[2])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
 };
 
-const onerror = () => {
-  console.log(`=== Orden sin terminar`);
-}
+
 
 async function waiter3(){
   const order = [menu.hotdog, menu.pizza, menu.hotdog];
@@ -53,8 +51,8 @@ async function waiter3(){
     const ordersTable = await Promise.all(promesas);
     console.log(ordersTable);
     console.log(`Su Orden esta lista ${table[1]} por favor acerquese a retirarla`);
-  } catch (error) {
-    onerror(error);
+  } catch  {
+    console.log(`=== Orden sin terminar`);
   }
 } 
 
