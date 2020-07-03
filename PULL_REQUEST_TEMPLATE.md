@@ -6,12 +6,12 @@ Nombre:
 Usuario Platzi:
 
 ## GRUPO
-- [ ] Martes
+- [ x] Martes
 - [ ] Miercoles
 - [ ] Jueves
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
+  - [x] Primer problema
+  - [x] Segundo problema
+  - [x] Tercer problema
   - [ ] Cuarto Problema (Opcional)
