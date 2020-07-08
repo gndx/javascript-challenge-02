@@ -42,23 +42,22 @@ const waiter2 = () => {
     .catch((err) => console.error(err));
 waiter2();
 
-const waiter3 = async () => {
-  try{
-     const orden= await orders();
-   orders(8005, menu.pizza, table[1])
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
-
-  orders(8005, menu.hotdog, table[1])
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
-
-    orders(8005, menu.hotdog, table[1])
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
-    
-    } catch (err) {
-        console.log(err);
+const waiter3 = async()  =>  {
+  try {
+   await orders() ;
+   orders (8000, menu.hamburger, table[1])
+    .then((res) =>  console.log(res))
+   
+  orders (8000, menu.pizza, table[1])
+    .then((res) =>  console.log(res))
+   
+  orders (8000, menu.hotdog, table[1])
+    .then((res) =>  console.log(res))
+   
+    }  catch(err) {
+        console.log (err) ;
       } 
   }
+
 waiter3();
+randomTime();
