@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/platzi/escuelajs-reto-04/issues"
   },
-  "homepage": "https://github.com/platzi/escuelajs-reto-04#readme"
+  "homepage": "https://github.com/platzi/escuelajs-reto-04#readme",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
 }
