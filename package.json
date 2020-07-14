@@ -1,24 +1,24 @@
 {
-  "name": "escuelajs-reto-04",
-  "version": "1.0.0",
-  "description": "Reto 4 Septiembre 21: Curso de Fundamentos de JavaScript",
+  "name": "curso-profesional-js",
+  "version": "1.1.0",
+  "description": "javascript challenge 02",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/platzi/escuelajs-reto-04.git"
+    "url": "https://github.com/AGCGUAMAN/javascript-challenge-02.git"
   },
   "keywords": [
-    "javascript",
-    "escuelajs",
+    "Empoderatech",
+    "platzi",
     "node"
   ],
   "author": "Oscar Barajas <oscar@platzi.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/platzi/escuelajs-reto-04/issues"
+    "url": "https://github.com/gndx/javascript-challenge-02.git"
   },
-  "homepage": "https://github.com/platzi/escuelajs-reto-04#readme"
+  "homepage": "https://github.com/gndx/javascript-challenge-02"
 }

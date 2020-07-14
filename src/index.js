@@ -1,9 +1,20 @@
+const max = 8000;
+
+const min = 1000;
+
+const randomTime = (max, min) => {
+  return Math.round(Math.random() * (max - min)) + min;
+}
+
 const orders = (time, product, table) => {
-  console.log(`### Orden: ${product} para ${table}`);
+  console.log(`Orden ###: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
-    }, time);
+    if(randomTime(max, min) <= time) {
+      setTimeout(() => {
+        resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
+      }, time);
+    }
+    else {reject(new Error(Error))};
   });
 }
 
