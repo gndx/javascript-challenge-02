@@ -1,7 +1,7 @@
 {
   "name": "escuelajs-reto-04",
   "version": "1.0.0",
-  "description": "Reto 4 Septiembre 21: Curso de Fundamentos de JavaScript",
+  "description": "Reto 2 - Curso de Fundamentos de JavaScript",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js"
@@ -15,10 +15,14 @@
     "escuelajs",
     "node"
   ],
-  "author": "Oscar Barajas <oscar@platzi.com>",
+  "author": "Felipe Morales <tadeus87@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/platzi/escuelajs-reto-04/issues"
   },
-  "homepage": "https://github.com/platzi/escuelajs-reto-04#readme"
+
+  "homepage": "https://github.com/platzi/escuelajs-reto-04#readme",
+  "devDependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }
