@@ -2,16 +2,16 @@
 
 Solución al reto 04 de Escuela de JavaScript
 
-Nombre:
-Usuario Platzi:
+Nombre: Andrés Felipe Tovar Rojas
+Usuario Platzi: andresftovarnpm
 
 ## GRUPO
-- [ ] Martes
+- [x] Martes
 - [ ] Miercoles
 - [ ] Jueves
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
+  - [x] Primer problema
+  - [x] Segundo problema
+  - [x] Tercer problema
   - [ ] Cuarto Problema (Opcional)
