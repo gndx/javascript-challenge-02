@@ -88,8 +88,8 @@ const waiter4 = async (apiUrl) => {
 
 
 
-/* waiter(); */
-/* waiter2(); */
-/* waiter3(); */
-/* waiter3(); */
+waiter();
+waiter2();
+waiter3();
+waiter3();
 waiter4 (API)
