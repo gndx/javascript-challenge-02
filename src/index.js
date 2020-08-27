@@ -1,3 +1,6 @@
+const fetch = require('node-fetch');
+const url = 'https://us-central1-escuelajs-api.cloudfunctions.net/orders';
+
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
@@ -56,7 +59,39 @@ async function waiter3() {
     console.error(err);
   }
 }
+
+async function fetchOrders(){
+  try{
+    let response = await fetch(url);
+    let data = await response.json();
+    return data.data;
+  }catch(err){
+    console.error(err);
+  }
+}
+
+async function waiter4(){
+  try{
+    let productOne = await fetchOrders();
+    let productTwo = await fetchOrders();
+    let productThree = await fetchOrders();
+    let productFour = await fetchOrders();
+  
+    let orderOne = await orders(randomTime(), productOne, table[2]);
+    let orderTwo = await orders(randomTime(), productTwo, table[2]);
+    let orderThree = await orders(randomTime(), productThree, table[2]);
+    let orderFour = await orders(randomTime(), productFour, table[2]);
+    console.log(orderOne);
+    console.log(orderTwo);
+    console.log(orderThree);
+    console.log(orderFour);
+  }catch(err){
+    console.error(err);
+  }
+}
+
 //waiter();
 //waiter2();
-waiter3();
+//waiter3();
+waiter4();
 //console.log(randomTime())
