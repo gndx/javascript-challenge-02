@@ -1,12 +1,12 @@
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
-    if(time <= 6000){
+    if (time <= 6000) {
       setTimeout(() => {
         resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
       }, time);
 
-    }else{
+    } else {
       reject(`*** Disculpa la demora, el ${product} tarda mas de ${time}seg en prepararse.`);
     }
   });
@@ -34,15 +34,29 @@ const waiter = () => {
 
 const waiter2 = () => {
   orders(randomTime(), menu.hotdog, table[0])
-  .then((res) => {
-    console.log(res);
-    return orders(randomTime(), menu.pizza, table[2])
+    .then((res) => {
+      console.log(res);
+      return orders(randomTime(), menu.pizza, table[2])
     })
     .then((res) => {
-    console.log(res);
-    })      
+      console.log(res);
+    })
     .catch((err) => console.error(err));
 }
+
+async function waiter3() {
+  try {
+    var order1 = await orders(randomTime(), menu.hotdog, [1]);
+    var order2 = await orders(randomTime(), menu.pizza, [1]);
+    var order3 = await orders(randomTime(), menu.hotdog, [1]);
+    console.log(`1- ${order1}`);
+    console.log(`2- ${order2}`);
+    console.log(`3- ${order3}`);
+  } catch (err) {
+    console.error(err);
+  }
+}
 //waiter();
-waiter2();
+//waiter2();
+waiter3();
 //console.log(randomTime())
