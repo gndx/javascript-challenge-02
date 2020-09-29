@@ -12,7 +12,7 @@ const orders = (time, product, table) => {
           resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
           }, time);
 	}catch(err){
-	   reject(`Error during setup: ${err}`);
+	   reject(`Error durante la entrega del pedido: ${err}`);
 	}  
 
   });
@@ -32,4 +32,14 @@ const waiter = () => {
     .catch((err) => console.error(err));
 };
 
+const waiter2 = () => {
+  orders(randomTime(1000, 8000), menu.hotdog, table[0])
+    .then((res) => console.log(res));
+	return orders(randomTime(1000, 8000), menu.pizza, table[2])
+	 .then((res) => console.log(res))
+     .catch((err) => console.error(err));
+};
+
+
 waiter();
+waiter2();
