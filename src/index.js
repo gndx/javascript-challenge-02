@@ -1,3 +1,27 @@
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+const API = 'https://us-central1-escuelajs-api.cloudfunctions.net/orders';
+const xhttp = new XMLHttpRequest();
+
+
+const fetchOrders = (url_api) => {
+  xhttp.responseType = 'json';
+  xhttp.open('GET', url_api, true);
+  xhttp.send();
+  return new Promise((resolve, reject) => {
+  xhttp.onreadystatechange = (event) => {
+    if (xhttp.readyState === 4) {
+      if (xhttp.status == 200){
+		const response = JSON.parse(xhttp.responseText);  
+        resolve(response);
+	  }
+      else reject(Error(`No fue posible entregar la petición desde ${url_api}`));
+    }
+  }
+ })
+}
+
+
 const randomTime = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -12,7 +36,7 @@ const orders = (time, product, table) => {
           resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
           }, time);
 	}catch(err){
-	   reject(`Error durante la entrega del pedido: ${err}`);
+	   reject(Error(`Error durante la entrega del pedido: ${err}`));
 	}  
 
   });
@@ -53,7 +77,23 @@ const waiter3 = async() => {
 	}
 };
 
+const waiter4 = async() => {
+	try{
+		const order1 = await fetchOrders(API)
+		console.log(`=== Pedido servido: ${order1.data}`)
+		const order2 = await fetchOrders(API)
+		console.log(`=== Pedido servido: ${order2.data}`)
+		const order3 = await fetchOrders(API)
+		console.log(`=== Pedido servido: ${order3.data}`)
+		const order4 = await fetchOrders(API)
+		console.log(`=== Pedido servido: ${order4.data}`)
+	}catch(err){
+		console.log(`Error durante la entrega del pedido: ${err}`)
+	}
+};
+
 
 waiter();
 waiter2();
 waiter3();
+waiter4();
