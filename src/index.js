@@ -40,6 +40,20 @@ const waiter2 = () => {
      .catch((err) => console.error(err));
 };
 
+const waiter3 = async() => {
+	try{
+		const order1 = await orders(randomTime(1000, 8000), menu.hotdog, table[1])
+		console.log(order1)
+		const order2 = await orders(randomTime(1000, 8000), menu.pizza, table[1])
+		console.log(order2)
+		const order3 = await orders(randomTime(1000, 8000), menu.hotdog, table[1])
+		console.log(order3)
+	}catch(err){
+		console.error(err)
+	}
+};
+
 
 waiter();
 waiter2();
+waiter3();
