@@ -1,5 +1,12 @@
 const max = 8000
 const min = 1000
+const menu = {
+  hamburger: 'Combo Hamburguesa',
+  hotdog: 'Combo Hot Dogs',
+  pizza: 'Combo Pizza',
+};
+
+const table = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
 
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
@@ -11,27 +18,33 @@ const orders = (time, product, table) => {
   });
 }
 
-const menu = {
-  hamburger: 'Combo Hamburguesa',
-  hotdog: 'Combo Hot Dogs',
-  pizza: 'Combo Pizza',
-};
-
-const table = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
-
-
 const randonTime =(min, max) => {
   return (Math.floor(Math.random()*(max-min + 1))+min)
 }
 
 const waiter = () => {
   orders(randonTime(min, max), menu.hamburger, table[3])
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
+  .then((res) => console.log(res))
+  
+  .catch((err) => console.error(err))
 };
 
-waiter();
 
 
+const waiter2 =() => {
+  orders(randonTime(min, max), menu.hotdog, table[0])
+  .then((res) =>  {
+    console.log(res)
+   return orders(randonTime(min, max), menu.pizza, table[2])
+  })
+  .then((res) => console.log(res))
+  
+  .catch((err) => console.error(err))
+}
+
+
+
+waiter()
+waiter2()
 
   
