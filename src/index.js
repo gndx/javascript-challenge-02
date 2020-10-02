@@ -42,9 +42,29 @@ const waiter2 =() => {
   .catch((err) => console.error(err))
 }
 
+async function waiter3 ()
+ {
+   try {
+  const order1=  await orders(randonTime(min, max),menu.pizza, table[1])
+  
+   
+   const order2=  await orders(randonTime(min, max),menu.hotdog, table[1])
+  
+
+   const order3=  await orders(randonTime(min, max),menu.hotdog, table[1])
+  
+   console.log(order1,order2,order3)
+   
+ 
+}
+catch(e) {
+  console.error(err)
+}
+}
+
 
 
 waiter()
 waiter2()
-
+waiter3()
   
