@@ -1,9 +1,22 @@
+const randomTime = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(MAth.random() * (max - min + 1) + min);
+}
+
+
+
+
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
-    }, time);
+    try{
+          setTimeout(() => {
+        resolve(`=== Pedido servido: ${product}, preparación ${time}ms para la ${table}`);
+        }, time);
+    }catch(err){
+        reject(`Error during setup: ${err}`);
+    }    
   });
 }
 
