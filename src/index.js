@@ -44,4 +44,19 @@ const waiter2 = () => {
     .catch((err) => console.error(err));
 };
 
-waiter2();
+async function waiter3() {
+  try {
+    const result = await orders(randomTime(), menu.hotdog, table[1]);
+    const result2 = await orders(randomTime(), menu.pizza, table[1]);
+    const result3 = await orders(randomTime(), menu.hotdog, table[1]);
+    let arr =  [result, result2, result3];
+    arr.map((data) => {
+      console.log(data);
+    })
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+waiter3();
