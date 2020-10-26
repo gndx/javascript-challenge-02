@@ -1,9 +1,13 @@
-const orders = (time, product, table) => {
+const ORDERS = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
+    if (time >= 1000 && time < 8000){
+      setTimeout(() => {
+        resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
     }, time);
+  } else {
+      reject(new Error('Error: the attention time must be between 1000ms and 8000ms'))
+    }
   });
 }
 
@@ -13,10 +17,14 @@ const menu = {
   pizza: 'Combo Pizza',
 };
 
-const table = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
+const TABLE = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
 
-const waiter = () => {
-  orders(6000, menu.hamburger, table[3])
+const RANDOM_TIME = (minimumTime, maximumTime) =>{
+  return Math.floor (Math.random() * (maximumTime - minimumTime)) + minimumTime;
+}
+
+const WAITER = () => {
+  orders(RANDOM_TIME (1000, 8000), menu.hamburger, table[3])
     .then((res) => console.log(res))
     .catch((err) => console.error(err));
 };
