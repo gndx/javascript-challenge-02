@@ -1,3 +1,5 @@
+const fetch = require ("node-fetch");
+
 const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
@@ -56,4 +58,34 @@ const waiter3 = async () => {
   }
 }
 
-waiter3();
+/* waiter3(); */
+
+const fetchOrders = async () => {
+  const API = 'https://us-central1-escuelajs-api.cloudfunctions.net/orders';
+  try{
+    const response = await fetch(API);
+    const combo = await response.json ();
+    return combo.data;
+  } catch (error){
+      console.error("Fetch Error", error);
+  }
+}
+
+/* fetchOrders(); */
+
+const waiter4 = async () => {
+  try{
+    const order1 = await orders(randomtime(1000,8000), await fetchOrders(), table[0]);
+    const order2 = await orders(randomtime(1000,8000), await fetchOrders(), table[1]);
+    const order3 = await orders(randomtime(1000,8000), await fetchOrders(), table[2]);
+    const order4 = await orders(randomtime(1000,8000), await fetchOrders(), table[3]);
+    console.log(`Primer Pedido ${order1}`);
+    console.log(`Segundo Pedido ${order2}`);
+    console.log(`Tercer Pedido ${order3}`);
+    console.log(`Cuarto Pedido ${order4}`);
+  } catch (error){
+      console.error('Error', error);
+  }
+}
+
+waiter4();
