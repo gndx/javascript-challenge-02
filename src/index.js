@@ -1,7 +1,7 @@
-const ORDERS = (time, product, table) => {
+const orders = (time, product, table) => {
   console.log(`### Orden: ${product} para ${table}`);
   return new Promise((resolve, reject) => {
-    if (time >= 1000 && time < 8000){
+    if (time >= 1000 && time <= 8000){
       setTimeout(() => {
         resolve(`=== Pedido servido: ${product}, tiempo de preparación ${time}ms para la ${table}`);
     }, time);
@@ -17,14 +17,14 @@ const menu = {
   pizza: 'Combo Pizza',
 };
 
-const TABLE = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
+const table = ['Mesa 1', 'Mesa 2', 'Mesa 3', 'Mesa 4', 'Mesa 5'];
 
-const RANDOM_TIME = (minimumTime, maximumTime) =>{
+const randomtime = (minimumTime, maximumTime) =>{
   return Math.floor (Math.random() * (maximumTime - minimumTime)) + minimumTime;
 }
 
-const WAITER = () => {
-  orders(RANDOM_TIME (1000, 8000), menu.hamburger, table[3])
+const waiter = () => {
+  orders(randomtime(1000, 8000), menu.hamburger, table[3])
     .then((res) => console.log(res))
     .catch((err) => console.error(err));
 };
