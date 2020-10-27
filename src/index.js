@@ -30,3 +30,15 @@ const waiter = () => {
 };
 
 waiter();
+
+const waiter2 = () => {
+  orders(randomtime(1000, 8000), menu.hotdog, table[0])
+    .then((res) => {
+      console.log(res)
+      return orders(randomtime(1000, 8000), menu.pizza, table[2]);
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+};
+
+waiter2();
