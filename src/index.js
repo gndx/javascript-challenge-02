@@ -29,7 +29,7 @@ const waiter = () => {
     .catch((err) => console.error(err));
 };
 
-waiter();
+/* waiter(); */
 
 const waiter2 = () => {
   orders(randomtime(1000, 8000), menu.hotdog, table[0])
@@ -41,4 +41,19 @@ const waiter2 = () => {
     .catch((err) => console.error(err));
 };
 
-waiter2();
+/* waiter2(); */
+
+const waiter3 = async () => {
+  try {
+    const order1 = await orders(randomTime(1000, 8000), menu.hotdog, table[1]);
+    const order2 = await orders(randomTime(1000, 8000), menu.pizza, table[1]);
+    const order3 = await orders(randomTime(1000, 8000), menu.hotdog, table[1]);
+    console.log(`Primer Pedido: ${order1}`);
+    console.log(`Segundo Pedido: ${order2}`);
+    console.log(`Tercer Pedido: ${order3}`);
+  } catch (error) {
+    console.error('Error', error);
+  }
+}
+
+waiter3();
